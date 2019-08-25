@@ -1,6 +1,6 @@
 {
     "name": "@ts-delight/debug.macro",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Lightweight macro to make debug logging more effective",
     "main": "debug.macro.js",
     "types": "debug.macro.d.ts",
