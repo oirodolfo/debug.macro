@@ -79,13 +79,29 @@ const debugMacro = ({ references, state, babel }) => {
   };
 
   const getLineStartLiteral = node =>
-    t.stringLiteral(`[L${node.loc.start.line}]`);
+    t.stringLiteral(`[L:${node.loc.start.line}]`);
+
+  const getDateLiteral = node =>
+    t.templateLiteral([
+        t.templateElement({raw: '[@:', cooked: '[@:'}),
+        t.templateElement({raw: ']', cooked: ']'}, true)
+    ], [
+        t.callExpression(
+            t.memberExpression(t.identifier('Date'), t.identifier('now')),
+            []
+        )
+    ]);
+
+  const getLogPrefix = node => [
+      getDateLiteral(node),
+      getLineStartLiteral(node)
+  ];
 
   const declarationVisitor = {
     VariableDeclaration(declPath) {
       const parentPath = declPath.findParent(() => true);
       const idx = parentPath.node.body.indexOf(declPath.node);
-      const args = [];
+      const args = getLogPrefix(parentPath.node);
       declPath.node.declarations.forEach(declarator => {
         args.push(t.stringLiteral(`${declarator.id.name} :`));
         args.push(declarator.id);
@@ -104,6 +120,7 @@ const debugMacro = ({ references, state, babel }) => {
         idx + 1,
         0,
         t.callExpression(assignedId, [
+          ...getLogPrefix(parentPath.node),
           t.stringLiteral(`${assPath.node.left.name} :`),
           assPath.node.left,
         ])
@@ -114,7 +131,7 @@ const debugMacro = ({ references, state, babel }) => {
   const processReference = nodePath => {
     let parentPath = nodePath.findParent(() => true);
     if (parentPath.isCallExpression()) {
-      parentPath.node.arguments.unshift(getLineStartLiteral(parentPath.node));
+      parentPath.node.arguments.unshift(...getLogPrefix(parentPath.node));
     } else if (
       parentPath.isMemberExpression() &&
       parentPath.node.object === nodePath.node
@@ -131,7 +148,7 @@ const debugMacro = ({ references, state, babel }) => {
             );
           }
           const args = nextParentPath.node.arguments;
-          const newArgs = [getLineStartLiteral(nextParentPath.node)];
+          const newArgs = getLogPrefix(nextParentPath.node);
           for (const arg of args) {
             newArgs.push(t.stringLiteral(`${stringifyArg(arg)} :`), arg);
           }

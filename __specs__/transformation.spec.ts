@@ -13,7 +13,7 @@ test('Transformations', () => {
 
     const _debug2 = _debug(\\"debug.macro:__specs__:__fixtures__:index\\");
 
-    debug(\\"[L3]\\", 'foo');
+    debug(\`[@:\${Date.now()}]\`, \\"[L:3]\\", 'foo');
     const a = 1;
     const b = {
       a: 10,
@@ -22,12 +22,12 @@ test('Transformations', () => {
       }
     };
 
-    _debug2(\\"[L7]\\", \\"a :\\", a, \\"b.b.c :\\", b.b.c);
+    _debug2(\`[@:\${Date.now()}]\`, \\"[L:7]\\", \\"a :\\", a, \\"b.b.c :\\", b.b.c);
 
     function foo() {
       const c = [1, 2, 3];
 
-      _debug2(\\"[L11]\\", \\"c :\\", c, \\"c :\\", c, \\"a :\\", a, \\"b :\\", b);
+      _debug2(\`[@:\${Date.now()}]\`, \\"[L:11]\\", \\"c :\\", c, \\"c :\\", c, \\"a :\\", a, \\"b :\\", b);
     }"
   `);
   expect(
@@ -56,19 +56,19 @@ test('Transformations', () => {
           }
         };
 
-        _debug2(\\"b :\\", b)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:5]\\", \\"b :\\", b)
 
         let d = foo();
 
-        _debug2(\\"d :\\", d)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:5]\\", \\"d :\\", d)
 
         var c = 20;
 
-        _debug2(\\"c :\\", c)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:5]\\", \\"c :\\", c)
 
         c = 30;
 
-        _debug2(\\"c :\\", c)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:5]\\", \\"c :\\", c)
       }
 
       const c = foo();
@@ -86,7 +86,7 @@ test('Transformations', () => {
 
     const _debug2 = _debug(\\"debug.macro:__specs__:__fixtures__:index\\");
 
-    _debug2(\\"_debug2 :\\", _debug2)
+    _debug2(\`[@:\${Date.now()}]\`, \\"[L:1]\\", \\"_debug2 :\\", _debug2)
 
     debug.all();
 
@@ -95,7 +95,7 @@ test('Transformations', () => {
         a: 10
       };
 
-      _debug2(\\"a :\\", a)
+      _debug2(\`[@:\${Date.now()}]\`, \\"[L:5]\\", \\"a :\\", a)
 
       function bar() {
         const b = {
@@ -106,24 +106,24 @@ test('Transformations', () => {
           }
         };
 
-        _debug2(\\"b :\\", b)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:7]\\", \\"b :\\", b)
 
         let d = foo();
 
-        _debug2(\\"d :\\", d)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:7]\\", \\"d :\\", d)
 
         var c = 20;
 
-        _debug2(\\"c :\\", c)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:7]\\", \\"c :\\", c)
 
         c = 30;
 
-        _debug2(\\"c :\\", c)
+        _debug2(\`[@:\${Date.now()}]\`, \\"[L:7]\\", \\"c :\\", c)
       }
 
       const c = foo();
 
-      _debug2(\\"c :\\", c)
+      _debug2(\`[@:\${Date.now()}]\`, \\"[L:5]\\", \\"c :\\", c)
 
       return c;
     }"
