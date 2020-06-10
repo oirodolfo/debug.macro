@@ -1,4 +1,4 @@
-import debug from '../../debug.macro';
+import debug from '../../lib/debug.macro';
 
 debug('foo');
 

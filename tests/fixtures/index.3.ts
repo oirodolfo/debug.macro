@@ -1,9 +1,10 @@
-import debug from '../../debug.macro';
+import debug from '../../lib/debug.macro';
+
+debug.all();
 
 function foo(): any {
   const a = { a: 10 };
   function bar() {
-    debug.allInScope();
     const b = { b: { c: { d: 100 } } };
     let d = foo();
     var c = 20;
