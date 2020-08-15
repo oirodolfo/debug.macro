@@ -8,7 +8,7 @@
 4. Utility (`debug.allInScope()`) to debug all variables declared in block scope (whenever they are initialized or reassigned)
 5. Utility (`debug.all()`) to debug all variables in current file.
 
-Examples: [[1]](https://github.com/ts-delight/debug.macro/blob/master/__specs__/__fixtures__/index.1.ts), [[2]](https://github.com/ts-delight/debug.macro/blob/master/__specs__/__fixtures__/index.2.ts), [[3]](https://github.com/ts-delight/debug.macro/blob/master/__specs__/__fixtures__/index.3.ts).
+Examples: [[1]](https://github.com/ts-delight/debug.macro/blob/master/tests/fixtures/index.1.ts), [[2]](https://github.com/ts-delight/debug.macro/blob/master/tests/fixtures/index.2.ts), [[3]](https://github.com/ts-delight/debug.macro/blob/master/tests/fixtures/index.3.ts).
 
 ## Installation
 
