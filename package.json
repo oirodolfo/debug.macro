@@ -1,9 +1,9 @@
 {
     "name": "@ts-delight/debug.macro",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "description": "Lightweight macro to make debug logging more effective",
-    "main": "debug.macro.js",
-    "types": "debug.macro.d.ts",
+    "main": "lib/debug.macro.js",
+    "types": "lib/debug.macro.d.ts",
     "scripts": {
         "build": "babel src --out-dir lib --extensions .ts && cp fake-definitions/*.d.ts lib ",
         "format": "prettier --write ./**/*.js ./**/*.ts --extensions .ts",
@@ -13,6 +13,7 @@
     "publishConfig": {
         "access": "public"
     },
+    "files": ["lib"],
     "prettier": {
         "printWidth": 80,
         "semi": true,
